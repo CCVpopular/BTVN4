@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách lớp</title>
+    <th:block th:replace="~{layout::link-css}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{layout::header}"></th:block>
+<div class="container mt-4">
+    <h2>Danh sách lớp</h2>
+    <a class="btn btn-primary" th:href="@{/lop/add}">Thêm mới</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Mã lớp</th>
+            <th>Tên lớp</th>
+            <th>Chức năng</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="lop : ${listlop}">
+            <td th:text="${lop.malop}"></td>
+            <td th:text="${lop.tenlop}"></td>
+            <td>
+                <a th:href="@{/lop/update/{id}(id=${lop.malop})}">Sửa</a> |
+                <a th:href="@{/lop/delete/{id}(id=${lop.malop})}" onclick="return confirm ('Bạn có muốn xoá?')">Xoá</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<th:block th:replace="~{layout::footer}"></th:block>
+</body>
+</html>
+
