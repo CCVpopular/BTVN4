@@ -9,6 +9,10 @@
 <th:block th:replace="~{layout::header}"></th:block>
 <div class="container mt-4">
     <h2>Danh sách môn học</h2>
+    <form th:action="@{/monhoc/search}" method="get">
+        <input type="text" th:value="${keyword}" id="keyword" name="keyword">
+        <input type="submit" class="btn btn-primary" value="Lưu">
+    </form>
     <a class="btn btn-primary" th:href="@{/monhoc/add}">Thêm mới</a>
     <table class="table">
         <thead>
@@ -20,11 +24,11 @@
         </thead>
         <tbody>
             <tr th:each="monhoc : ${listmonhoc}">
-                <td th:text="${monhoc.mamonhoc}"></td>
+                <td th:text="${monhoc.maMon}"></td>
                 <td th:text="${monhoc.tenmonhoc}"></td>
                 <td>
-                    <a th:href="@{/monhoc/update/{id}(id=${monhoc.mamonhoc})}">Sửa</a> |
-                    <a th:href="@{/monhoc/delete/{id}(id=${monhoc.mamonhoc})}" onclick="return confirm ('Bạn có muốn xoá?')">Xoá</a>
+                    <a th:href="@{/monhoc/update/{id}(id=${monhoc.maMon})}">Sửa</a> |
+                    <a th:href="@{/monhoc/delete/{id}(id=${monhoc.maMon})}" onclick="return confirm ('Bạn có muốn xoá?')">Xoá</a>
                 </td>
             </tr>
         </tbody>

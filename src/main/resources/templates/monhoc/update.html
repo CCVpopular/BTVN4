@@ -3,24 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <th:block th:replace="~{layout::link-css}"></th:block>
-  <title>Thêm môn học</title>
+  <title>Sửa sách</title>
 </head>
 <body>
     <th:block th:replace="~{layout::header}"></th:block>
     <div class="container">
-      <h1>Thêm môn học</h1>
-      <form th:action="@{/monhoc/add}" th:object="${monhoc}" method="post">
+      <h1>Chỉnh sửa sách</h1>
+      <form th:action="@{/monhoc/update/{id}(id=${monhoc.maMon})}" th:object="${monhoc}" method="post">
+        <input type="hidden" th:field="*{maMon}"/>
         <div class="col-6 mb-3">
-          <label class="form-label" for="maMon">Mã môn học:</label>
-          <input class="form-control" type="text" th:field="*{maMon}" id="maMon">
-          <span th:if="${#fields.hasErrors('maMon')}" th:errors="*{maMon}" class="text-danger"></span>
-        </div>
-        <div class="col-6 mb-3">
-          <label class="form-label" for="tenmonhoc">Tên môn học:</label>
+          <label class="form-label" for="tenmonhoc">Tên lớp:</label>
           <input class="form-control" type="text" th:field="*{tenmonhoc}" id="tenmonhoc">
           <span th:if="${#fields.hasErrors('tenmonhoc')}" th:errors="*{tenmonhoc}" class="text-danger"></span>
         </div>
-        <input type="submit" class="btn btn-primary" value="Thêm mới">
+        <input type="submit" class="btn btn-primary" value="Lưu">
       </form>
       <br>
       <a th:href="@{/monhoc}">Trở về</a>

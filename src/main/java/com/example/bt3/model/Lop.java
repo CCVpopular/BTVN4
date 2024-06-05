@@ -30,7 +30,8 @@ public class Lop {
     @OneToMany(
         mappedBy = "lop",
         cascade = CascadeType.ALL,
-        fetch = FetchType.LAZY
+        fetch = FetchType.LAZY,
+        orphanRemoval = true
     )
     private Set<SinhVien> sinhViens;
 }

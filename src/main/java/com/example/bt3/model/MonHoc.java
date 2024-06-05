@@ -20,11 +20,12 @@ public class MonHoc {
     @Id
     @Column(name = "MaMon", length = 10)
     @Size(min = 1, max = 10, message = "Ma Mon Phai Co Ky Tu Tu 1 -> 10")
-    private String mamonhoc;
+    private String maMon;
 
     @Size(min = 5, max = 50, message = "Ten Mon Hoc Phai Tu 5 -> 50 Ky Tu")
     @Column(name = "TenMonHoc", length = 50)
     private String tenmonhoc;
+    
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "SinhVien_MonHoc",

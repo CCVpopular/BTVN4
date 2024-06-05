@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <th:block th:replace="~{layout::link-css}"></th:block>
-  <title>Sửa sách</title>
+  <title>Sửa lớp</title>
 </head>
 <body>
     <th:block th:replace="~{layout::header}"></th:block>
     <div class="container">
-      <h1>Chỉnh sửa sách</h1>
+      <h1>Chỉnh sửa lớp</h1>
       <form th:action="@{/lop/update/{id}(id=${lop.malop})}" th:object="${lop}" method="post">
         <input type="hidden" th:field="*{malop}"/>
         <div class="col-6 mb-3">

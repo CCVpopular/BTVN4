@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -78,4 +79,11 @@ public class LopController {
         return "redirect:/lop";
     }
     
+    @GetMapping("/search")
+    public String searchLop(@RequestParam(name = "keyword",required = false,defaultValue = "") String keyword, Model model) {
+        List<Lop> listlop = lopService.searchLop(keyword);
+        model.addAttribute("listlop",listlop);
+        return "lop/list";
+    }
+
 }

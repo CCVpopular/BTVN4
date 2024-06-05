@@ -10,6 +10,10 @@
 <div class="container mt-4">
     <h2>Danh sách lớp</h2>
     <a class="btn btn-primary" th:href="@{/lop/add}">Thêm mới</a>
+    <form th:action="@{/lop/search}" method="get">
+        <input type="text" th:value="${keyword}" id="keyword" name="keyword">
+        <input type="submit" class="btn btn-primary" value="Lưu">
+    </form>    
     <table class="table">
         <thead>
         <tr>

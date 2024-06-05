@@ -8,9 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.bt3.model.Lop;
 import com.example.bt3.model.MonHoc;
 import com.example.bt3.services.MonHocService;
 
@@ -44,30 +47,37 @@ public class MonHocController {
         return "redirect:/monhoc";
     }
 
-    // @GetMapping("/update/{id}")
-    // public String editLop(@PathVariable("id") int id, Model model) {
-    //     Lop listlop = monhocService.getLopById(id);
-    //     if(listlop !=null){
-    //         model.addAttribute("lop",listlop);
-    //         return "/lop/update";
-    //     }
-    //     return "redirect:/lop";
-    // }
+    @GetMapping("/update/{id}")
+    public String editMonHoc(@PathVariable("id") String id, Model model) {
+        MonHoc listmonhoc = monhocService.getMonHocById(id);
+        if(listmonhoc !=null){
+            model.addAttribute("monhoc",listmonhoc);
+            return "/monhoc/update";
+        }
+        return "redirect:/monhoc";
+    }
 
-    // @PostMapping("/update/{id}")
-    // public String editLop(@Valid @ModelAttribute("lop") Lop lop,BindingResult result,@PathVariable("id") int id) {
-    //     if (result.hasErrors()) {
-    //         return "/lop/update";
-    //     }
-    //     Lop listlop = monhocService.getLopById(id);
-    //     listlop.setTenlop(lop.getTenlop());
-    //     monhocService.updateLop(listlop);
-    //     return "redirect:/lop";
-    // }
+    @PostMapping("/update/{id}")
+    public String editMonHoc(@Valid @ModelAttribute("monhoc") MonHoc monhoc,BindingResult result,@PathVariable("id") String id) {
+        if (result.hasErrors()) {
+            return "/monhoc/update";
+        }
+        MonHoc listmonhoc = monhocService.getMonHocById(id);
+        listmonhoc.setTenmonhoc(monhoc.getTenmonhoc());
+        monhocService.updateMonHoc(listmonhoc);
+        return "redirect:/monhoc";
+    }
 
-    // @GetMapping("/delete/{id}")
-    // public String deleteLop(@PathVariable("id") int id) {
-    //     monhocService.deleteLop(id);
-    //     return "redirect:/lop";
-    // }
+    @GetMapping("/delete/{id}")
+    public String deleteMonHoc(@PathVariable("id") String id) {
+        monhocService.deleteMonHoc(id);
+        return "redirect:/monhoc";
+    }
+
+    @GetMapping("/search")
+    public String searchLop(@RequestParam(name = "keyword",required = false,defaultValue = "") String keyword, Model model) {
+        List<MonHoc> listmonhoc = monhocService.searchMonhoc(keyword);
+        model.addAttribute("listmonhoc",listmonhoc);
+        return "monhoc/list";
+    }
 }

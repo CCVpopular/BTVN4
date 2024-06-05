@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <th:block th:replace="~{layout::link-css}"></th:block>
+  <title>Thêm sinh viên</title>
+</head>
+<body>
+    <th:block th:replace="~{layout::header}"></th:block>
+    <div class="container">
+      <h1>Thêm sinh viên</h1>
+      <form th:action="@{/sinhvien/update/{id}(id=${sinhvien.mssv})}" th:object="${sinhvien}" method="post">
+        <div class="col-6 mb-3">
+          <label class="form-label" for="mssv">MSSV:</label>
+          <input class="form-control" type="text" th:field="*{mssv}" id="mssv">
+          <span th:if="${#fields.hasErrors('mssv')}" th:errors="*{mssv}" class="text-danger"></span>
+        </div>
+        <div class="col-6 mb-3">
+          <label class="form-label" for="tensinhvien">Tên sinh viên:</label>
+          <input class="form-control" type="text" th:field="*{tensinhvien}" id="tensinhvien">
+          <span th:if="${#fields.hasErrors('tensinhvien')}" th:errors="*{tensinhvien}" class="text-danger"></span>
+        </div>
+        <div class="col-6 mb-3">
+          <label class="form-label" for="ngaysinh">Tên sinh viên:</label>
+          <input class="form-control" type="date" th:field="*{ngaysinh}" id="ngaysinh" placeholder="yyyy-mm-dd">
+          <span th:if="${#fields.hasErrors('ngaysinh')}" th:errors="*{ngaysinh}" class="text-danger"></span>
+        </div>
+        <div class="col-6 mb-3">
+          <label class="form-label" for="email">Email:</label>
+          <input class="form-control" type="text" th:field="*{email}" id="email">
+          <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+        </div>
+        <div class="col-6 mb-3">
+          <label for="monHocs">Môn học:</label>
+          <select id="monHocs" name="monHocs" class="form-control" multiple th:field="*{monHocs}">
+              <option th:each="monHoc : ${dsMonHoc}" th:value="${monHoc.maMon}" th:text="${monHoc.tenmonhoc}"></option>
+          </select>
+          <span th:if="${#fields.hasErrors('monHocs')}" th:errors="*{monHocs}" class="text-danger"></span>
+      </div>
+        <div class="col-6 mb-3">
+          <select name="lop" class="form-control">
+            <option>Chọn lớp</option>
+            <option th:each="lop : ${lops}" th:value="${lop.malop}" th:text="${lop.tenlop}"></option>
+        </select>
+        <span th:if="${#fields.hasErrors('lop')}" th:errors="*{lop}" class="text-danger"></span>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Thêm mới">
+      </form>
+      <br>
+      <a th:href="@{/sinhvien}">Trở về</a>
+    </div>
+    <th:block th:replace="~{layout::footer}"></th:block> 
+</body>
+</html>
