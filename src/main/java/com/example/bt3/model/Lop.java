@@ -29,8 +29,9 @@ public class Lop {
     private String tenlop;
     @OneToMany(
         mappedBy = "lop",
-        cascade = CascadeType.ALL,
         fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL,
+
         orphanRemoval = true
     )
     private Set<SinhVien> sinhViens;

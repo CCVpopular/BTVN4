@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.bt3.model.Lop;
 import com.example.bt3.model.MonHoc;
 import com.example.bt3.repository.IMonHocRepository;
 
@@ -13,6 +12,7 @@ import com.example.bt3.repository.IMonHocRepository;
 public class MonHocService {
     @Autowired
     private IMonHocRepository monHocRepository;
+    
     public List<MonHoc> getAllMonHocs(){
         return monHocRepository.findAll();
     }

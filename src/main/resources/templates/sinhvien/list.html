@@ -37,7 +37,8 @@
 
                     <div th:if="${sinhvien.monHocs} != null">
                         <ul>
-                            <li th:each="monhoc : ${sinhvien.monHocs}" ></li>
+                            <li th:each="monhoc : ${listmonhoc}" th:text="${monhoc.tenmonhoc}"></li>
+                            <li th:each="monhoc : ${sinhvien.monHocs}" th:text="${monhoc.maMon}"></li>
                         </ul>
                         <p>aaaaa</p>
                     </div>

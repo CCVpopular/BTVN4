@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.bt3.model.Lop;
 import com.example.bt3.model.MonHoc;
 import com.example.bt3.services.MonHocService;
 

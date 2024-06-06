@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.bt3.model.MonHoc;
 import com.example.bt3.model.SinhVien;
 import com.example.bt3.services.LopService;
 import com.example.bt3.services.MonHocService;
@@ -36,6 +35,7 @@ public class SinhVienController {
     @GetMapping
     public String showAllSinhVien(Model model) {
         model.addAttribute("listsinhvien",sinhvienService.getAllSinhViens());
+        model.addAttribute("listmonhoc", monhocService.getAllMonHocs());
         return "sinhvien/list";
     }
 

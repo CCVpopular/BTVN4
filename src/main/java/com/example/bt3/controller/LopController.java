@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 import com.example.bt3.model.Lop;
+import com.example.bt3.model.SinhVien;
 import com.example.bt3.services.LopService;
+import com.example.bt3.services.SinhVienService;
 
 import jakarta.validation.Valid;
 
@@ -29,6 +31,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LopController {
     @Autowired
     private LopService lopService;
+
+    @Autowired
+    private SinhVienService sinhVienService;
 
     @GetMapping
     public String showAllLop(Model model) {
@@ -75,6 +80,10 @@ public class LopController {
 
     @GetMapping("/delete/{id}")
     public String deleteLop(@PathVariable("id") int id) {
+        List<SinhVien> sinhViens = sinhVienService.getAllSinhViens();
+        sinhViens.stream()
+            .filter(sinhVien -> sinhVien.getLop().getMalop() == id)
+            .forEach(sinhVien -> sinhVienService.deleteSinhVien(sinhVien.getMssv()));
         lopService.deleteLop(id);
         return "redirect:/lop";
     }

@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 import com.example.bt3.model.Lop;
 import com.example.bt3.repository.ILopRepository;
 
+
 @Service
 public class LopService {
     @Autowired
     private ILopRepository lopRepository;
+
     public List<Lop> getAllLops(){
         return lopRepository.findAll();
     }

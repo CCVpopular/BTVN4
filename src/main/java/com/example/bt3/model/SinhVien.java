@@ -5,7 +5,6 @@ import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -56,7 +55,7 @@ public class SinhVien {
         foreignKey = @ForeignKey(name = "Fk_SINHVIEN_LOP")
     )
     private Lop lop;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "SinhVien_MonHoc",
         joinColumns = {@JoinColumn(name = "MSSV")},
