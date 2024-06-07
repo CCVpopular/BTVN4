@@ -37,5 +37,4 @@ public class SinhVienService {
     public List<SinhVien> finSinhVienslopList (Lop lop){
         return sinhvienRepository.findByLop(lop);
     }
-    
 }

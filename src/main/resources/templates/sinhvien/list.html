@@ -1,57 +1,53 @@
 <!DOCTYPE html>
 <html lang xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Danh sách môn học</title>
     <th:block th:replace="~{layout::link-css}"></th:block>
 </head>
+
 <body>
-<th:block th:replace="~{layout::header}"></th:block>
-<div class="container mt-4">
-    <h2>Danh sách môn học</h2>
-    <form th:action="@{/sinhvien/search}" method="get">
-        <input type="text" th:value="${keyword}" id="keyword" name="keyword">
-        <input type="submit" class="btn btn-primary" value="Lưu">
-    </form>
-    <a class="btn btn-primary" th:href="@{/sinhvien/add}">Thêm mới</a>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>MSSV</th>
-            <th>Tên Sinh Viên</th>
-            <th>Email</th>
-            <th>Ngày Sinh</th>
-            <th>Lớp</th>
-            <th>Môn Học</th>
-            <th>Chức năng</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr th:each="sinhvien : ${listsinhvien}">
-                <td th:text="${sinhvien.mssv}"></td>
-                <td th:text="${sinhvien.tensinhvien}"></td>
-                <td th:text="${sinhvien.email}"></td>
-                <td th:text="${sinhvien.ngaysinh}"></td>
-                <td th:text="${sinhvien.lop.tenlop}" ></td>
-                <td>
-
-                    <div th:if="${sinhvien.monHocs} != null">
-                        <ul>
-                            <li th:each="monhoc : ${listmonhoc}" th:text="${monhoc.tenmonhoc}"></li>
-                            <li th:each="monhoc : ${sinhvien.monHocs}" th:text="${monhoc.maMon}"></li>
-                        </ul>
-                        <p>aaaaa</p>
-                    </div>
-                </td>
-                <td>
-                    <a th:href="@{/sinhvien/update/{id}(id=${sinhvien.mssv})}">Sửa</a> |
-                    <a th:href="@{/sinhvien/delete/{id}(id=${sinhvien.mssv})}" onclick="return confirm ('Bạn có muốn xoá?')">Xoá</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<th:block th:replace="~{layout::footer}"></th:block>
+    <th:block th:replace="~{layout::header}"></th:block>
+    <div class="container mt-4">
+        <h2>Danh sách môn học</h2>
+        <form th:action="@{/sinhvien/search}" method="get">
+            <input type="text" th:value="${keyword}" id="keyword" name="keyword">
+            <input type="submit" class="btn btn-primary" value="Lưu">
+        </form>
+        <a class="btn btn-primary" th:href="@{/sinhvien/add}">Thêm mới</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>MSSV</th>
+                    <th>Tên Sinh Viên</th>
+                    <th>Email</th>
+                    <th>Ngày Sinh</th>
+                    <th>Lớp</th>
+                    <th>Môn Học</th>
+                    <th>Chức năng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="sinhvien : ${listsinhvien}">
+                    <td th:text="${sinhvien.mssv}"></td>
+                    <td th:text="${sinhvien.tensinhvien}"></td>
+                    <td th:text="${sinhvien.email}"></td>
+                    <td th:text="${sinhvien.ngaysinh}"></td>
+                    <td th:text="${sinhvien.lop.tenlop}"></td>
+                    <td>
+                        <p th:each="monhoc : ${listmonhoc}" th:if="${sinhvien.mssv}" th:text="${monhoc.tenmonhoc}"></p>                                                   
+                    </td>
+                    <td>
+                        <a th:href="@{/sinhvien/update/{id}(id=${sinhvien.mssv})}">Sửa</a> |
+                        <a th:href="@{/sinhvien/delete/{id}(id=${sinhvien.mssv})}"
+                            onclick="return confirm ('Bạn có muốn xoá?')">Xoá</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <th:block th:replace="~{layout::footer}"></th:block>
 </body>
-</html>
 
+</html>

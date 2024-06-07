@@ -31,4 +31,7 @@ public class MonHocService {
     public List<MonHoc> searchMonhoc(String monhoc){
         return monHocRepository.findByTenmonhocContaining(monhoc);
     }
+    public List<MonHoc> getAllSinhVienswithMonHoc(){
+        return monHocRepository.getAllSinhVienMonHoc();
+    }
 }

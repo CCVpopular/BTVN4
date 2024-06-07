@@ -35,7 +35,7 @@ public class SinhVienController {
     @GetMapping
     public String showAllSinhVien(Model model) {
         model.addAttribute("listsinhvien",sinhvienService.getAllSinhViens());
-        model.addAttribute("listmonhoc", monhocService.getAllMonHocs());
+        model.addAttribute("listmonhoc", monhocService.getAllSinhVienswithMonHoc());
         return "sinhvien/list";
     }
 
